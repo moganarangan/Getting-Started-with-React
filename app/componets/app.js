@@ -10,12 +10,17 @@ export default class App extends React.Component {
         super(props);
         this.state =    { count: 0 };
         this.handleClick = this.handleClick.bind(this);
+        this.resetClick = this.resetClick.bind(this);
     }
 
     handleClick(incrementValue) {
         this.setState((prevState) => ({
         count: prevState.count + incrementValue
         }));
+    };
+
+    resetClick(){
+        this.setState({count: 0});
     };
 
     render(){
@@ -29,6 +34,9 @@ export default class App extends React.Component {
                 <Counter incrementValue={20} onClickFunction={this.handleClick} />
                 <br />
                 <DisplayCounter count={this.state.count} />
+
+                <br />
+                <button onClick={this.resetClick} disabled={this.state.count === 0}> Reset </button>
             </div>
         );
     }
